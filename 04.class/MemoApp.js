@@ -8,17 +8,15 @@ export class MemoApp {
     this.storage = new MemoStorage();
   }
 
-  run() {
+  async run() {
     if (this.argv.l) {
-      this.list();
+      await this.list();
     } else if (this.argv.r) {
-      this.read();
+      await this.read();
     } else if (this.argv.d) {
-      this.delete();
-    } else if (this.argv.e) {
-      this.edit();
+      await this.delete();
     } else {
-      this.add();
+      await this.add();
     }
   }
 

@@ -1,9 +1,12 @@
 import Database from "better-sqlite3";
 import { Memo } from "./Memo.js";
+import { fileURLToPath } from "url";
+import path from "path";
 
 export class MemoStorage {
   constructor() {
-    this.db = new Database("memos.db");
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    this.db = new Database(path.join(__dirname, "memos.db"));
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS memos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
