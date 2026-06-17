@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { Memo } from "./Memo.js";
+import { Memo } from "./MemoModel.js";
 import { fileURLToPath } from "url";
 import path from "path";
 
