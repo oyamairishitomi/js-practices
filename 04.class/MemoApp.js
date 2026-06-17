@@ -10,7 +10,7 @@ export class MemoApp {
 
   async run() {
     if (this.argv.l) {
-      await this.list();
+      this.list();
     } else if (this.argv.r) {
       await this.read();
     } else if (this.argv.d) {
@@ -47,27 +47,35 @@ export class MemoApp {
 
   async read() {
     const memos = this.storage.findAll();
-    const answer = await inquirer.prompt([
-      {
-        type: "select",
-        name: "memo",
-        message: "Choose a note you want to see:",
-        choices: memos.map((memo) => ({ name: memo.title, value: memo })),
-      },
-    ]);
-    console.log(answer.memo.content);
+    if (memos.length === 0) {
+      console.log("メモがありません");
+    } else {
+      const answer = await inquirer.prompt([
+        {
+          type: "select",
+          name: "memo",
+          message: "Choose a note you want to see:",
+          choices: memos.map((memo) => ({ name: memo.title, value: memo })),
+        },
+      ]);
+      console.log(answer.memo.content);
+    }
   }
 
   async delete() {
     const memos = this.storage.findAll();
-    const answer = await inquirer.prompt([
-      {
-        type: "select",
-        name: "memo",
-        message: "Choose a note you want to delete:",
-        choices: memos.map((memo) => ({ name: memo.title, value: memo })),
-      },
-    ]);
-    this.storage.destroy(answer.memo.id);
+    if (memos.length === 0) {
+      console.log("メモがありません");
+    } else {
+      const answer = await inquirer.prompt([
+        {
+          type: "select",
+          name: "memo",
+          message: "Choose a note you want to delete:",
+          choices: memos.map((memo) => ({ name: memo.title, value: memo })),
+        },
+      ]);
+      this.storage.destroy(answer.memo.id);
+    }
   }
 }
