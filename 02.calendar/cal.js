@@ -7,7 +7,7 @@ const today = new Date();
 const month = argv.m || today.getMonth() + 1;
 const year = argv.y || today.getFullYear();
 
-const firstDay = new Date(year, month - 1, 1).getDay();
+const firstDate = new Date(year, month - 1, 1);
 
 const daysInMonth = new Date(year, month, 0).getDate();
 
@@ -16,18 +16,16 @@ const monthLabel = month + "月";
 console.log(`      ${monthLabel} ${year}`);
 console.log("日 月 火 水 木 金 土");
 
-let line = "   ".repeat(firstDay);
-let dayOfWeek = firstDay;
+let line = "   ".repeat(firstDate.getDay());
 
 for (let day = 1; day <= daysInMonth; day++) {
+  if (day > 1 && line !== "") {
+    line += " ";
+  }
   line += day.toString().padStart(2, " ");
-  dayOfWeek++;
-  if (dayOfWeek === 7) {
+  if ((firstDate.getDay() + (day - 1)) % 7 === 6) {
     console.log(line);
     line = "";
-    dayOfWeek = 0;
-  } else {
-    line += " ";
   }
 }
 
