@@ -9,14 +9,14 @@ const year = argv.y ?? today.getFullYear();
 
 const firstDate = new Date(year, month - 1, 1);
 
-const daysInMonth = new Date(year, month, 0).getDate();
+const lastDate = new Date(year, month, 0);
 
 console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
 let line = "   ".repeat(firstDate.getDay());
 
-for (let day = 1; day <= daysInMonth; day++) {
+for (let day = 1; day <= lastDate.getDate(); day++) {
   if (day > 1 && line !== "") {
     line += " ";
   }
