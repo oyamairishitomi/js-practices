@@ -10,7 +10,7 @@ db.run(
       ["こうじの大冒険"],
       function () {
         console.log(this.lastID);
-        db.all("SELECT * FROM books", (err, rows) => {
+        db.all("SELECT * FROM books", (_err, rows) => {
           console.log(rows);
           db.run("DROP TABLE books", () => {});
         });
