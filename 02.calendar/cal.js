@@ -17,16 +17,11 @@ console.log("日 月 火 水 木 金 土");
 let line = "   ".repeat(firstDate.getDay());
 
 for (let day = 1; day <= lastDate.getDate(); day++) {
-  if (day > 1 && line !== "") {
-    line += " ";
-  }
   line += day.toString().padStart(2, " ");
-  if ((firstDate.getDay() + (day - 1)) % 7 === 6) {
+  if ((firstDate.getDay() + (day - 1)) % 7 === 6 || day === lastDate.getDate()) {
     console.log(line);
     line = "";
+  } else {
+    line += " ";
   }
-}
-
-if (line.trim() !== "") {
-  console.log(line);
 }
