@@ -12,7 +12,7 @@ db.run(
         console.log(this.lastID);
         db.all("SELECT * FROM books", (_err, rows) => {
           console.log(rows);
-          db.run("DROP TABLE books", () => {});
+          db.run("DROP TABLE books");
         });
       },
     );
