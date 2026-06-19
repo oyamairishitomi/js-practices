@@ -11,9 +11,7 @@ const firstDate = new Date(year, month - 1, 1);
 
 const daysInMonth = new Date(year, month, 0).getDate();
 
-const monthLabel = month + "月";
-
-console.log(`      ${monthLabel} ${year}`);
+console.log(`      ${month}月 ${year}`);
 console.log("日 月 火 水 木 金 土");
 
 let line = "   ".repeat(firstDate.getDay());
