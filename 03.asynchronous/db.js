@@ -12,7 +12,7 @@ export function run(db, sql, params) {
 
 export function all(db, sql, params) {
   return new Promise((resolve, reject) => {
-    db.all(sql, params, function (error, rows) {
+    db.all(sql, params, (error, rows) => {
       if (error) {
         reject(error);
       } else {
