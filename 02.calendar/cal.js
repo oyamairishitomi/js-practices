@@ -17,8 +17,9 @@ console.log("日 月 火 水 木 金 土");
 let line = "   ".repeat(firstDate.getDay());
 
 for (let day = 1; day <= lastDate.getDate(); day++) {
+  const currentDate = new Date(year, month - 1, day);
   line += day.toString().padStart(2, " ");
-  if ((firstDate.getDay() + (day - 1)) % 7 === 6 || day === lastDate.getDate()) {
+  if (currentDate.getDay() === 6 || day === lastDate.getDate()) {
     console.log(line);
     line = "";
   } else {
