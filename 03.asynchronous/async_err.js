@@ -12,6 +12,9 @@ async function main() {
   try {
     await run(db, "INSERT INTO books (title) VALUES (?)", ["こうじの大冒険"]);
   } catch (err) {
+    if (err.code !== "SQLITE_CONSTRAINT") {
+      throw err;
+    }
     console.error(err.message);
   }
   try {
