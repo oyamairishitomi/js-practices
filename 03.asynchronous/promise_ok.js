@@ -10,7 +10,11 @@ run(
   .then(() =>
     run(db, "INSERT INTO books (title) VALUES (?)", ["こうじの大冒険"]),
   )
-  .then((result) => console.log(result.lastID))
-  .then(() => all(db, "SELECT * FROM books"))
-  .then((rows) => console.log(rows))
-  .then(() => run(db, "DROP TABLE books"));
+  .then((result) => {
+    console.log(result.lastID);
+    return all(db, "SELECT * FROM books");
+  })
+  .then((rows) => {
+    console.log(rows);
+    return run(db, "DROP TABLE books");
+  });
