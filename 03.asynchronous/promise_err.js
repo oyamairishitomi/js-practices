@@ -13,7 +13,11 @@ run(
   .then(() =>
     run(db, "INSERT INTO books (title) VALUES (?)", ["こうじの大冒険"]),
   )
-  .catch((error) => console.error(error.message))
-  .then(() => all(db, "SELECT * FROM booooooks"))
-  .catch((error) => console.error(error.message))
-  .then(() => run(db, "DROP TABLE books"));
+  .catch((error) => {
+    console.error(error.message);
+    return all(db, "SELECT * FROM booooooks");
+  })
+  .catch((error) => {
+    console.error(error.message);
+    return run(db, "DROP TABLE books");
+  });
