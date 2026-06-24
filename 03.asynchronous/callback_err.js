@@ -14,12 +14,14 @@ db.run(
           ["こうじの大冒険"],
           (err) => {
             if (err?.code !== "SQLITE_CONSTRAINT") {
-              throw err;
+              console.error(err);
+              process.exit(1);
             }
             console.error(err.message);
             db.all("SELECT * FROM booooooks", (err) => {
               if (err?.code !== "SQLITE_ERROR") {
-                throw err;
+                console.error(err);
+                process.exit(1);
               }
               console.error(err.message);
               db.run("DROP TABLE books");
