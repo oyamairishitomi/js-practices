@@ -13,16 +13,8 @@ db.run(
           "INSERT INTO books (title) VALUES (?)",
           ["こうじの大冒険"],
           (err) => {
-            if (err?.code !== "SQLITE_CONSTRAINT") {
-              console.error(err);
-              process.exit(1);
-            }
             console.error(err.message);
             db.all("SELECT * FROM booooooks", (err) => {
-              if (err?.code !== "SQLITE_ERROR") {
-                console.error(err);
-                process.exit(1);
-              }
               console.error(err.message);
               db.run("DROP TABLE books");
             });
