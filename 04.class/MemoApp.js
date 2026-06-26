@@ -68,7 +68,7 @@ export class MemoApp {
   }
 
   #readStdin() {
-    return new Promise((resolve, ßreject) => {
+    return new Promise((resolve, reject) => {
       const chunks = [];
       process.stdin.setEncoding("utf8");
       process.stdin.on("data", (chunk) => {
