@@ -23,7 +23,7 @@ export class MemoApp {
   #list() {
     const memos = this.storage.findAll();
     memos.forEach((memo) => {
-      console.log(memo.title);
+      console.log(this.#firstLine(memo));
     });
   }
 
@@ -38,7 +38,7 @@ export class MemoApp {
         type: "select",
         name: "memo",
         message: "Choose a memo you want to see:",
-        choices: memos.map((memo) => ({ name: memo.title, value: memo })),
+        choices: memos.map((memo) => ({ name: this.#firstLine(memo), value: memo })),
       },
     ]);
     console.log(answer.memo.content);
@@ -55,7 +55,7 @@ export class MemoApp {
         type: "select",
         name: "memo",
         message: "Choose a memo you want to delete:",
-        choices: memos.map((memo) => ({ name: memo.title, value: memo })),
+        choices: memos.map((memo) => ({ name: this.#firstLine(memo), value: memo })),
       },
     ]);
     this.storage.delete(answer.memo.id);
@@ -64,7 +64,7 @@ export class MemoApp {
   async #add() {
     const content = await this.#readStdin();
     const memo = await this.storage.create(content);
-    console.log(`${memo.title} を保存しました`);
+    console.log(`${this.#firstLine(memo)} を保存しました`);
   }
 
   #readStdin() {
@@ -81,5 +81,9 @@ export class MemoApp {
         reject(err);
       });
     });
+  }
+
+  #firstLine(memo) {
+    return memo.content.split("\n")[0];
   }
 }
