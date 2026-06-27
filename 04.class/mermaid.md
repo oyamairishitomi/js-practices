@@ -3,25 +3,25 @@ classDiagram
   class Memo {
     +int id
     +string content
-    +string title
   }
 
   class MemoStorage {
     -db
     +create(content) Memo
     +findAll() Memo[]
-    +destroy(id)
+    +delete(id)
   }
 
   class MemoApp {
     -storage MemoStorage
-    -argv
+    -options
     +run()
     -list()
-    -add()
     -read()
     -delete()
+    -add()
     -readStdin() string
+    -firstLine(memo) string
   }
 
   MemoApp --> MemoStorage : uses
