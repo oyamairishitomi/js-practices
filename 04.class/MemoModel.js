@@ -14,4 +14,8 @@ export class Memo {
   get content() {
     return this.#content;
   }
+
+  get firstLine() {
+    return this.content.split("\n")[0];
+  }
 }
